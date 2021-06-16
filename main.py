@@ -1,3 +1,4 @@
+import matplotlib
 import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
 import matplotlib.pyplot as plt
@@ -44,7 +45,7 @@ def save_data(column):
         hold = res
         test = hold.replace("[['", "")
         test1 = test.replace("']]", "")
-        if (count % 60 == 0):
+        if (count % 50 == 0):
             time.sleep(60)
         count = count + 1
         f.write(test1+"\n")
@@ -95,17 +96,32 @@ def get_data(column):
 
 
 
+    print("X Values: " + str(revenue))
+    print("Y Values: " + str(performance))
 
+    font = {'size':6}
 
-
+    plot1 =plt.figure(1)
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, revenue)
     plt.ylabel('Usage')
     plt.title('Data Analyzed')
+    matplotlib.rc('font',**font)
 
+    plot2=plt.figure(2)
+    plt.pie(performance, labels=revenue, autopct='%1.1f%%')
+    plt.title('My Tasks')
+    plt.axis('equal')
+    matplotlib.rc('font', **font)
     plt.show()
 
-#save_data("AB")
-get_data("AB")
 
+
+
+
+
+#save_data("B")
+#get_data("B")
+
+save_data()
 
