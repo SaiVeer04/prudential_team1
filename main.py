@@ -95,8 +95,10 @@ def get_data(column):
             if(revenue[x] == record1):
                 performance[x] = performance[x]+1
 
-
-
+    hold = worksheet.get(column + "2")
+    test = str(hold).replace("[['", "")
+    test1 = test.replace("']]", "")
+    print(test1)
     print("X Values: " + str(revenue))
     print("Y Values: " + str(performance))
 
@@ -126,6 +128,6 @@ def get_data(column):
 
 
 #save_data("E")
-get_data("E")
+get_data("AB")
 
 
