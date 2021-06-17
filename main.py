@@ -53,6 +53,7 @@ def save_data(column):
     f.close()
 
 def get_data(column):
+    #Gettting the x-value
     revenue = []
 
     f1 = open(f'{column}.txt','r')
@@ -104,13 +105,17 @@ def get_data(column):
     plot1 =plt.figure(1)
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, revenue)
+    hold = worksheet.get(column + "2")
+    test = str(hold).replace("[['", "")
+    test1 = test.replace("']]", "")
     plt.ylabel('Usage')
-    plt.title('Data Analyzed')
+    plt.title(test1)
     matplotlib.rc('font',**font)
 
     plot2=plt.figure(2)
     plt.pie(performance, labels=revenue, autopct='%1.1f%%')
-    plt.title('My Tasks')
+
+    plt.title(test1)
     plt.axis('equal')
     matplotlib.rc('font', **font)
     plt.show()
@@ -120,8 +125,7 @@ def get_data(column):
 
 
 
-#save_data("B")
-#get_data("B")
+#save_data("E")
+get_data("E")
 
-save_data()
 
