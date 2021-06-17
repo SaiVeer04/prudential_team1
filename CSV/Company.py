@@ -18,6 +18,8 @@ class Company(object):
         LESS_THAN_2 = 1
         FROM_2_TO_4 = 2
         FROM_5_TO_9 = 3
+        FROM_10_TO_19 = 4
+        MORE_THAN_20 = 5
 
 
     Employees = namedtuple("Employees", "permanent_victoria interstate other_victoria overseas")
