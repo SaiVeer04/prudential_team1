@@ -1,3 +1,4 @@
+import matplotlib
 import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
 import matplotlib.pyplot as plt
@@ -44,7 +45,7 @@ def save_data(column):
         hold = res
         test = hold.replace("[['", "")
         test1 = test.replace("']]", "")
-        if (count % 60 == 0):
+        if (count % 50 == 0):
             time.sleep(60)
         count = count + 1
         f.write(test1+"\n")
@@ -52,6 +53,7 @@ def save_data(column):
     f.close()
 
 def get_data(column):
+    #Gettting the x-value
     revenue = []
 
     f1 = open(f'{column}.txt','r')
@@ -93,19 +95,39 @@ def get_data(column):
             if(revenue[x] == record1):
                 performance[x] = performance[x]+1
 
+    hold = worksheet.get(column + "2")
+    test = str(hold).replace("[['", "")
+    test1 = test.replace("']]", "")
+    print(test1)
+    print("X Values: " + str(revenue))
+    print("Y Values: " + str(performance))
 
+    font = {'size':6}
 
-
-
-
+    plot1 =plt.figure(1)
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, revenue)
+    hold = worksheet.get(column + "2")
+    test = str(hold).replace("[['", "")
+    test1 = test.replace("']]", "")
     plt.ylabel('Usage')
-    plt.title('Data Analyzed')
+    plt.title(test1)
+    matplotlib.rc('font',**font)
 
+    plot2=plt.figure(2)
+    plt.pie(performance, labels=revenue, autopct='%1.1f%%')
+
+    plt.title(test1)
+    plt.axis('equal')
+    matplotlib.rc('font', **font)
     plt.show()
 
-#save_data("AB")
+
+
+
+
+
+#save_data("E")
 get_data("AB")
 
 
